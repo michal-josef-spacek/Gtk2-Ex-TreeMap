@@ -1,0 +1,23 @@
+---
+abstract: unknown
+author:
+  - 'Ofey Aikon <ofey.aikon at gmail dot com>'
+build_requires:
+  ExtUtils::MakeMaker: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 6.8, CPAN::Meta::Converter version 2.132510'
+license: unknown
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Gtk2-Ex-TreeMap
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  Gtk2::TestHelper: 0
+  Test::More: 0
+version: 0.02
