@@ -34,7 +34,7 @@ sub draw_map_simple {
 	$tree->{Node} = [];
 	my $color = 120;
 	my $count = 0;
-	my $color_incr = (255-120)/($#{@$list}+1);
+	my $color_incr = (255-120)/($#{$list}+1);
 	foreach my $element (@$list) {
 		push @{$tree->{Node}}, { size => $element, color => "0,0,$color", description => $count++ };
 		$color += $color_incr;
@@ -102,7 +102,7 @@ sub _build_rectangles {
 	} else {
 		$self->_draw_squarified($size, $values, $rectangles, 'vertical');
 	}
-	if ($#{@$rectangles} > 0) {
+	if ($#{$rectangles} > 0) {
 		$tree->{rectangles} = $rectangles;
 		my $count = 0;
 		foreach my $child (@{$tree->{Node}}) {
@@ -157,7 +157,7 @@ sub _build_event_box {
 			$y -= ($self->{imageallocatedsize}->[3] - $self->{size}->[1])/2;
 			my $path = [];
 			$self->_get_path_at_pos($self->{tree}, $path, $x, $y);
-			if ($#{@$path} >= 0) {
+			if ($#{$path} >= 0) {
 				my @clonepath = @$path;
 				my $chosen_rectangle = $self->_get_rectangle_at_path(\@clonepath, $self->{tree});
 				$self->_highlight_rectangle($chosen_rectangle);
@@ -207,7 +207,7 @@ sub _get_path_at_pos {
 
 sub _get_node_at_path {
 	my ($self, $path, $tree) = @_;
-	if ($#{@$path} == 0) {
+	if ($#{$path} == 0) {
 		return $tree->{Node}->[$path->[0]];
 	}
 	my $child = $tree->{Node}->[$path->[0]];
@@ -217,7 +217,7 @@ sub _get_node_at_path {
 
 sub _get_rectangle_at_path {
 	my ($self, $path, $tree) = @_;
-	if ($#{@$path} == 0) {
+	if ($#{$path} == 0) {
 		return $tree->{rectangles}->[$path->[0]];
 	}
 	my $child = $tree->{Node}->[$path->[0]];
@@ -227,7 +227,7 @@ sub _get_rectangle_at_path {
 
 sub _draw_squarified {
 	my ($self, $rect, $values, $rectangles, $direction) = @_;
-	if ($#{@$values} == 0) {
+	if ($#{$values} == 0) {
 		push @$rectangles, $rect;
 		return;
 	}
@@ -241,7 +241,7 @@ sub _draw_squarified {
 	my $height = abs($rect->[3] - $rect->[1]);
 	my ($x1, $y1, $x2, $y2);
 	if ($direction eq 'horizontal') {
-		for (my $i=0; $i<=$#{@$values}; $i++) {
+		for (my $i=0; $i<=$#{$values}; $i++) {
 			($x1, $y1) = ($rect->[0], $rect->[1]);
 			my @temp;
 			my $localsum = 0;
@@ -274,7 +274,7 @@ sub _draw_squarified {
 			push @$rectangles, $rect;
 		}
 	} elsif ($direction eq 'vertical') {
-		for (my $i=0; $i<=$#{@$values}; $i++) {
+		for (my $i=0; $i<=$#{$values}; $i++) {
 			($x1, $y1) = ($rect->[0], $rect->[1]);
 			my @temp;
 			my $localsum = 0;
